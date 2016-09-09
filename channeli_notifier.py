@@ -19,7 +19,7 @@ while True:
 	latest_notice_response = r.json()[0]
 	latest_notice_time = get_notice_time(latest_notice_response["datetime_modified"])
 	if last_notice_time is None or last_notice_time<latest_notice_time:
-		Notifier.notify(latest_notice_response["subject"],title=latest_notice_response["main_category"])
+		Notifier.notify(latest_notice_response["subject"].encode('utf-8'),title=latest_notice_response["main_category"].encode('utf-8'))
 		fp.write(latest_notice_response["datetime_modified"])
 	time.sleep(30)
 
